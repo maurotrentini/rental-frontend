@@ -1,10 +1,10 @@
 <template>
   <div class="space-y-6">
     <div>
-      <h1 class="text-2xl font-bold text-gray-900">
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">
         {{ isEditing ? 'Edit Booking' : 'Create Booking' }}
       </h1>
-      <p class="text-gray-600">
+      <p class="text-gray-600 dark:text-gray-300">
         {{ isEditing ? 'Update booking information' : 'Create a new reservation' }}
       </p>
     </div>
@@ -14,7 +14,7 @@
       <div class="flex items-center justify-center py-12">
         <div class="text-center">
           <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
-          <p class="text-gray-600">Loading booking data...</p>
+          <p class="text-gray-600 dark:text-gray-400">Loading booking data...</p>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
     <!-- Form (hidden while loading in edit mode) -->
     <div v-else class="card max-w-2xl">
       <form @submit.prevent="handleSubmit" class="space-y-6">
-        <div v-if="error" class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+        <div v-if="error" class="bg-red-50 dark:bg-red-900/50 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-4 py-3 rounded">
           {{ error }}
         </div>
 
@@ -118,16 +118,16 @@
 
         <!-- Extras Section -->
         <div v-if="extras.length > 0">
-          <h3 class="text-lg font-medium text-gray-900 mb-4">Extras</h3>
+          <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Extras</h3>
           <div class="space-y-3">
             <div
               v-for="extra in extras"
               :key="extra.id"
-              class="flex items-center justify-between p-3 border border-gray-200 rounded-md"
+              class="flex items-center justify-between p-3 border border-gray-200 dark:border-gray-600 rounded-md"
             >
               <div class="flex-1">
-                <h4 class="font-medium text-gray-900">{{ extra.name }}</h4>
-                <p class="text-sm text-gray-500">{{ extra.description }}</p>
+                <h4 class="font-medium text-gray-900 dark:text-white">{{ extra.name }}</h4>
+                <p class="text-sm text-gray-500 dark:text-gray-400">{{ extra.description }}</p>
                 <p class="text-sm font-medium text-primary-600">${{ extra.price }}</p>
               </div>
               <div class="flex items-center space-x-2">
@@ -135,7 +135,7 @@
                   :id="`extra-${extra.id}`"
                   v-model="selectedExtras[extra.id]"
                   type="checkbox"
-                  class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                  class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 rounded"
                   @change="calculatePrice"
                 />
                 <input
@@ -143,7 +143,7 @@
                   v-model="extraQuantities[extra.id]"
                   type="number"
                   min="1"
-                  class="w-16 px-2 py-1 border border-gray-300 rounded text-sm"
+                  class="w-16 px-2 py-1 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded text-sm"
                   @change="calculatePrice"
                 />
               </div>
@@ -152,18 +152,18 @@
         </div>
 
         <!-- Price Summary -->
-        <div v-if="priceBreakdown.nights > 0" class="bg-gray-50 p-4 rounded-md">
-          <h3 class="font-medium text-gray-900 mb-2">Price Summary</h3>
+        <div v-if="priceBreakdown.nights > 0" class="bg-gray-50 dark:bg-gray-700 p-4 rounded-md">
+          <h3 class="font-medium text-gray-900 dark:text-white mb-2">Price Summary</h3>
           <div class="space-y-1 text-sm">
-            <div class="flex justify-between">
+            <div class="flex justify-between text-gray-700 dark:text-gray-300">
               <span>{{ priceBreakdown.nights }} nights × ${{ priceBreakdown.pricePerNight }}</span>
               <span>${{ priceBreakdown.baseAmount }}</span>
             </div>
-            <div v-if="priceBreakdown.extrasAmount > 0" class="flex justify-between">
+            <div v-if="priceBreakdown.extrasAmount > 0" class="flex justify-between text-gray-700 dark:text-gray-300">
               <span>Extras</span>
               <span>${{ priceBreakdown.extrasAmount }}</span>
             </div>
-            <div class="border-t pt-1 flex justify-between font-medium">
+            <div class="border-t border-gray-200 dark:border-gray-600 pt-1 flex justify-between font-medium text-gray-900 dark:text-white">
               <span>Total</span>
               <span>${{ priceBreakdown.total }}</span>
             </div>

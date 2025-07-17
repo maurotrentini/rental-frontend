@@ -4,11 +4,11 @@
       <router-view />
     </div>
     
-    <div v-else class="min-h-screen bg-gray-50">
+    <div v-else class="min-h-screen bg-gray-50 dark:bg-gray-900">
       <AppHeader />
       <div class="flex">
         <AppSidebar />
-        <main class="flex-1 p-6">
+        <main class="flex-1 p-6 bg-gray-50 dark:bg-gray-900">
           <router-view />
         </main>
       </div>

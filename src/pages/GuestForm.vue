@@ -1,10 +1,10 @@
 <template>
   <div class="space-y-6">
     <div>
-      <h1 class="text-2xl font-bold text-gray-900">
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">
         {{ isEditing ? 'Edit Guest' : 'Add Guest' }}
       </h1>
-      <p class="text-gray-600">
+      <p class="text-gray-600 dark:text-gray-300">
         {{ isEditing ? 'Update guest information' : 'Create a new guest profile' }}
       </p>
     </div>
@@ -14,7 +14,7 @@
       <div class="flex items-center justify-center py-12">
         <div class="text-center">
           <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
-          <p class="text-gray-600">Loading guest data...</p>
+          <p class="text-gray-600 dark:text-gray-400">Loading guest data...</p>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
     <!-- Form (hidden while loading in edit mode) -->
     <div v-else class="card max-w-2xl">
       <form @submit.prevent="handleSubmit" class="space-y-6">
-        <div v-if="error" class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+        <div v-if="error" class="bg-red-50 dark:bg-red-900/50 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-4 py-3 rounded">
           {{ error }}
         </div>
 

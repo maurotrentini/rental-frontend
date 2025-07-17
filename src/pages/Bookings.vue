@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex items-center justify-between">
       <div>
-        <h1 class="text-2xl font-bold text-gray-900">Bookings</h1>
-        <p class="text-gray-600">Manage property reservations</p>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Bookings</h1>
+        <p class="text-gray-600 dark:text-gray-300">Manage property reservations</p>
       </div>
       <router-link to="/bookings/create" class="btn btn-primary">
         New Booking
@@ -57,8 +57,8 @@
 
       <div v-else-if="bookingStore.bookings.length === 0" class="text-center py-12">
         <CalendarIcon class="mx-auto h-12 w-12 text-gray-400" />
-        <h3 class="mt-2 text-sm font-medium text-gray-900">No bookings</h3>
-        <p class="mt-1 text-sm text-gray-500">Get started by creating a new booking.</p>
+        <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">No bookings</h3>
+        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Get started by creating a new booking.</p>
         <div class="mt-6">
           <router-link to="/bookings/create" class="btn btn-primary">
             New Booking
@@ -67,55 +67,55 @@
       </div>
 
       <div v-else class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+          <thead class="bg-gray-50 dark:bg-gray-700">
             <tr>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Guest
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Property
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Check-in
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Check-out
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Nights
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Status
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Total
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Actions
               </th>
             </tr>
           </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
+          <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
             <tr v-for="booking in bookingStore.bookings" :key="booking.id">
               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm font-medium text-gray-900">
+                <div class="text-sm font-medium text-gray-900 dark:text-white">
                   {{ booking.guest?.name }}
                 </div>
-                <div class="text-sm text-gray-500">
+                <div class="text-sm text-gray-500 dark:text-gray-400">
                   {{ booking.guest?.email }}
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">{{ booking.property?.name }}</div>
+                <div class="text-sm text-gray-900 dark:text-white">{{ booking.property?.name }}</div>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                 {{ formatDate(booking.check_in_date) }}
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                 {{ formatDate(booking.check_out_date) }}
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                 {{ booking.nights }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
@@ -123,7 +123,7 @@
                   {{ booking.status }}
                 </span>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
                 ${{ booking.total_price }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
@@ -136,7 +136,7 @@
                 <button
                   @click="confirmCancel(booking)"
                   :disabled="booking.status === 'cancelled'"
-                  class="text-red-600 hover:text-red-900 disabled:text-gray-400"
+                  class="text-red-600 hover:text-red-900 disabled:text-gray-400 dark:disabled:text-gray-600"
                 >
                   Cancel
                 </button>
@@ -149,7 +149,7 @@
 
     <!-- Pagination -->
     <div v-if="bookingStore.pagination.last_page > 1" class="flex items-center justify-between">
-      <div class="text-sm text-gray-700">
+      <div class="text-sm text-gray-700 dark:text-gray-300">
         Showing {{ ((bookingStore.pagination.current_page - 1) * bookingStore.pagination.per_page) + 1 }}
         to {{ Math.min(bookingStore.pagination.current_page * bookingStore.pagination.per_page, bookingStore.pagination.total) }}
         of {{ bookingStore.pagination.total }} results
@@ -173,12 +173,12 @@
     </div>
 
     <!-- Cancel Confirmation Modal -->
-    <div v-if="showCancelModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-      <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+    <div v-if="showCancelModal" class="fixed inset-0 bg-gray-600 dark:bg-gray-900 bg-opacity-50 dark:bg-opacity-75 overflow-y-auto h-full w-full z-50">
+      <div class="relative top-20 mx-auto p-5 border border-gray-200 dark:border-gray-700 w-96 shadow-lg rounded-md bg-white dark:bg-gray-800">
         <div class="mt-3 text-center">
-          <h3 class="text-lg font-medium text-gray-900">Cancel Booking</h3>
+          <h3 class="text-lg font-medium text-gray-900 dark:text-white">Cancel Booking</h3>
           <div class="mt-2 px-7 py-3">
-            <p class="text-sm text-gray-500">
+            <p class="text-sm text-gray-500 dark:text-gray-400">
               Are you sure you want to cancel this booking? This action cannot be undone.
             </p>
           </div>

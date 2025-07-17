@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex items-center justify-between">
       <div>
-        <h1 class="text-2xl font-bold text-gray-900">Guests</h1>
-        <p class="text-gray-600">Manage your guest profiles</p>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Guests</h1>
+        <p class="text-gray-600 dark:text-gray-300">Manage your guest profiles</p>
       </div>
       <router-link to="/guests/create" class="btn btn-primary">
         Add Guest
@@ -32,8 +32,8 @@
 
       <div v-else-if="guestStore.guests.length === 0" class="text-center py-12">
         <UsersIcon class="mx-auto h-12 w-12 text-gray-400" />
-        <h3 class="mt-2 text-sm font-medium text-gray-900">No guests</h3>
-        <p class="mt-1 text-sm text-gray-500">Get started by adding a new guest.</p>
+        <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">No guests</h3>
+        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Get started by adding a new guest.</p>
         <div class="mt-6">
           <router-link to="/guests/create" class="btn btn-primary">
             Add Guest
@@ -42,55 +42,55 @@
       </div>
 
       <div v-else class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+          <thead class="bg-gray-50 dark:bg-gray-700">
             <tr>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Name
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Email
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Phone
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Total Bookings
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Joined
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Actions
               </th>
             </tr>
           </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
+          <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
             <tr v-for="guest in guestStore.guests" :key="guest.id">
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                   <div class="flex-shrink-0 h-10 w-10">
-                    <div class="h-10 w-10 rounded-full bg-primary-100 flex items-center justify-center">
-                      <span class="text-sm font-medium text-primary-700">
+                    <div class="h-10 w-10 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center">
+                      <span class="text-sm font-medium text-primary-700 dark:text-primary-300">
                         {{ getInitials(guest.name) }}
                       </span>
                     </div>
                   </div>
                   <div class="ml-4">
-                    <div class="text-sm font-medium text-gray-900">{{ guest.name }}</div>
+                    <div class="text-sm font-medium text-gray-900 dark:text-white">{{ guest.name }}</div>
                   </div>
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">{{ guest.email }}</div>
+                <div class="text-sm text-gray-900 dark:text-white">{{ guest.email }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-500">{{ guest.phone || 'N/A' }}</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">{{ guest.phone || 'N/A' }}</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900">{{ guest.total_bookings || 0 }}</div>
+                <div class="text-sm text-gray-900 dark:text-white">{{ guest.total_bookings || 0 }}</div>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                 {{ formatDate(guest.created_at) }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
@@ -121,7 +121,7 @@
 
     <!-- Pagination -->
     <div v-if="guestStore.pagination.last_page > 1" class="flex items-center justify-between">
-      <div class="text-sm text-gray-700">
+      <div class="text-sm text-gray-700 dark:text-gray-300">
         Showing {{ ((guestStore.pagination.current_page - 1) * guestStore.pagination.per_page) + 1 }}
         to {{ Math.min(guestStore.pagination.current_page * guestStore.pagination.per_page, guestStore.pagination.total) }}
         of {{ guestStore.pagination.total }} results
@@ -145,12 +145,12 @@
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div v-if="showDeleteModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-      <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+    <div v-if="showDeleteModal" class="fixed inset-0 bg-gray-600 dark:bg-gray-900 bg-opacity-50 dark:bg-opacity-75 overflow-y-auto h-full w-full z-50">
+      <div class="relative top-20 mx-auto p-5 border border-gray-200 dark:border-gray-700 w-96 shadow-lg rounded-md bg-white dark:bg-gray-800">
         <div class="mt-3 text-center">
-          <h3 class="text-lg font-medium text-gray-900">Delete Guest</h3>
+          <h3 class="text-lg font-medium text-gray-900 dark:text-white">Delete Guest</h3>
           <div class="mt-2 px-7 py-3">
-            <p class="text-sm text-gray-500">
+            <p class="text-sm text-gray-500 dark:text-gray-400">
               Are you sure you want to delete "{{ guestToDelete?.name }}"? This action cannot be undone.
             </p>
           </div>
@@ -167,42 +167,42 @@
     </div>
 
     <!-- Booking History Modal -->
-    <div v-if="showHistoryModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-      <div class="relative top-10 mx-auto p-5 border w-4/5 max-w-4xl shadow-lg rounded-md bg-white">
+    <div v-if="showHistoryModal" class="fixed inset-0 bg-gray-600 dark:bg-gray-900 bg-opacity-50 dark:bg-opacity-75 overflow-y-auto h-full w-full z-50">
+      <div class="relative top-10 mx-auto p-5 border border-gray-200 dark:border-gray-700 w-4/5 max-w-4xl shadow-lg rounded-md bg-white dark:bg-gray-800">
         <div class="flex items-center justify-between mb-4">
-          <h3 class="text-lg font-medium text-gray-900">
+          <h3 class="text-lg font-medium text-gray-900 dark:text-white">
             Booking History - {{ selectedGuest?.name }}
           </h3>
-          <button @click="showHistoryModal = false" class="text-gray-400 hover:text-gray-600">
+          <button @click="showHistoryModal = false" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
             <span class="sr-only">Close</span>
             ✕
           </button>
         </div>
         
-        <div v-if="bookingHistory.length === 0" class="text-center py-8 text-gray-500">
+        <div v-if="bookingHistory.length === 0" class="text-center py-8 text-gray-500 dark:text-gray-400">
           No booking history found
         </div>
         
         <div v-else class="overflow-x-auto">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
+          <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead class="bg-gray-50 dark:bg-gray-700">
               <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Property</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Check-in</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Check-out</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Property</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Check-in</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Check-out</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Status</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Total</th>
               </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
+            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
               <tr v-for="booking in bookingHistory" :key="booking.id">
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                   {{ booking.property?.name }}
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                   {{ formatDate(booking.check_in_date) }}
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                   {{ formatDate(booking.check_out_date) }}
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
@@ -210,7 +210,7 @@
                     {{ booking.status }}
                   </span>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                   ${{ booking.total_price }}
                 </td>
               </tr>

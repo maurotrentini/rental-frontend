@@ -1,8 +1,8 @@
 <template>
   <div class="space-y-6">
     <div>
-      <h1 class="text-2xl font-bold text-gray-900">Dashboard</h1>
-      <p class="text-gray-600">Welcome to your rental management system</p>
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Dashboard</h1>
+      <p class="text-gray-600 dark:text-gray-300">Welcome to your rental management system</p>
     </div>
 
     <!-- Stats Cards -->
@@ -13,8 +13,8 @@
             <BuildingOfficeIcon class="h-8 w-8 text-primary-600" />
           </div>
           <div class="ml-4">
-            <p class="text-sm font-medium text-gray-500">Total Properties</p>
-            <p class="text-2xl font-semibold text-gray-900">{{ stats.properties }}</p>
+            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Properties</p>
+            <p class="text-2xl font-semibold text-gray-900 dark:text-white">{{ stats.properties }}</p>
           </div>
         </div>
       </div>
@@ -25,8 +25,8 @@
             <CalendarIcon class="h-8 w-8 text-green-600" />
           </div>
           <div class="ml-4">
-            <p class="text-sm font-medium text-gray-500">Active Bookings</p>
-            <p class="text-2xl font-semibold text-gray-900">{{ stats.activeBookings }}</p>
+            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Active Bookings</p>
+            <p class="text-2xl font-semibold text-gray-900 dark:text-white">{{ stats.activeBookings }}</p>
           </div>
         </div>
       </div>
@@ -37,8 +37,8 @@
             <UsersIcon class="h-8 w-8 text-blue-600" />
           </div>
           <div class="ml-4">
-            <p class="text-sm font-medium text-gray-500">Total Guests</p>
-            <p class="text-2xl font-semibold text-gray-900">{{ stats.guests }}</p>
+            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Guests</p>
+            <p class="text-2xl font-semibold text-gray-900 dark:text-white">{{ stats.guests }}</p>
           </div>
         </div>
       </div>
@@ -49,8 +49,8 @@
             <CurrencyDollarIcon class="h-8 w-8 text-yellow-600" />
           </div>
           <div class="ml-4">
-            <p class="text-sm font-medium text-gray-500">Monthly Revenue</p>
-            <p class="text-2xl font-semibold text-gray-900">${{ stats.revenue }}</p>
+            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Monthly Revenue</p>
+            <p class="text-2xl font-semibold text-gray-900 dark:text-white">{{ stats.revenue }}</p>
           </div>
         </div>
       </div>
@@ -59,7 +59,7 @@
     <!-- Recent Bookings -->
     <div class="card">
       <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg font-medium text-gray-900">Recent Bookings</h2>
+        <h2 class="text-lg font-medium text-gray-900 dark:text-white">Recent Bookings</h2>
         <router-link to="/bookings" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
           View all
         </router-link>
@@ -70,45 +70,45 @@
       </div>
       
       <div v-else-if="recentBookings.length === 0" class="text-center py-8 text-gray-500">
-        No recent bookings
+        <span class="text-gray-500 dark:text-gray-400">No recent bookings</span>
       </div>
       
       <div v-else class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+          <thead class="bg-gray-50 dark:bg-gray-700">
             <tr>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Guest
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Property
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Check-in
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Check-out
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Status
               </th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Total
               </th>
             </tr>
           </thead>
-          <tbody class="bg-white divide-y divide-gray-200">
+          <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
             <tr v-for="booking in recentBookings" :key="booking.id">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
                 {{ booking.guest?.name }}
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                 {{ booking.property?.name }}
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                 {{ formatDate(booking.check_in_date) }}
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                 {{ formatDate(booking.check_out_date) }}
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
@@ -116,7 +116,7 @@
                   {{ booking.status }}
                 </span>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                 ${{ booking.total_price }}
               </td>
             </tr>

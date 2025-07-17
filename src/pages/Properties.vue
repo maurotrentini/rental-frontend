@@ -2,8 +2,8 @@
   <div class="space-y-6">
     <div class="flex items-center justify-between">
       <div>
-        <h1 class="text-2xl font-bold text-gray-900">Properties</h1>
-        <p class="text-gray-600">Manage your rental properties</p>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Properties</h1>
+        <p class="text-gray-600 dark:text-gray-300">Manage your rental properties</p>
       </div>
       <router-link to="/properties/create" class="btn btn-primary">
         Add Property
@@ -46,8 +46,8 @@
 
     <div v-else-if="propertyStore.properties.length === 0" class="text-center py-12">
       <BuildingOfficeIcon class="mx-auto h-12 w-12 text-gray-400" />
-      <h3 class="mt-2 text-sm font-medium text-gray-900">No properties</h3>
-      <p class="mt-1 text-sm text-gray-500">Get started by creating a new property.</p>
+      <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">No properties</h3>
+      <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Get started by creating a new property.</p>
       <div class="mt-6">
         <router-link to="/properties/create" class="btn btn-primary">
           Add Property
@@ -63,11 +63,11 @@
       >
         <div class="flex items-start justify-between">
           <div class="flex-1">
-            <h3 class="text-lg font-medium text-gray-900 mb-2">
+            <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">
               {{ property.name }}
             </h3>
-            <p class="text-sm text-gray-600 mb-2">{{ property.address }}</p>
-            <p class="text-sm text-gray-500 mb-4 line-clamp-2">
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">{{ property.address }}</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 line-clamp-2">
               {{ property.description }}
             </p>
             <div class="flex items-center justify-between">
@@ -76,7 +76,7 @@
               </span>
               <span
                 :class="property.is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'"
-                class="px-2 py-1 text-xs font-medium rounded-full"
+                class="px-2 py-1 text-xs font-medium rounded-full dark:bg-opacity-20"
               >
                 {{ property.is_active ? 'Active' : 'Inactive' }}
               </span>
@@ -103,7 +103,7 @@
 
     <!-- Pagination -->
     <div v-if="propertyStore.pagination.last_page > 1" class="flex items-center justify-between">
-      <div class="text-sm text-gray-700">
+      <div class="text-sm text-gray-700 dark:text-gray-300">
         Showing {{ ((propertyStore.pagination.current_page - 1) * propertyStore.pagination.per_page) + 1 }}
         to {{ Math.min(propertyStore.pagination.current_page * propertyStore.pagination.per_page, propertyStore.pagination.total) }}
         of {{ propertyStore.pagination.total }} results
@@ -127,12 +127,12 @@
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div v-if="showDeleteModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-      <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+    <div v-if="showDeleteModal" class="fixed inset-0 bg-gray-600 dark:bg-gray-900 bg-opacity-50 dark:bg-opacity-75 overflow-y-auto h-full w-full z-50">
+      <div class="relative top-20 mx-auto p-5 border border-gray-200 dark:border-gray-700 w-96 shadow-lg rounded-md bg-white dark:bg-gray-800">
         <div class="mt-3 text-center">
-          <h3 class="text-lg font-medium text-gray-900">Delete Property</h3>
+          <h3 class="text-lg font-medium text-gray-900 dark:text-white">Delete Property</h3>
           <div class="mt-2 px-7 py-3">
-            <p class="text-sm text-gray-500">
+            <p class="text-sm text-gray-500 dark:text-gray-400">
               Are you sure you want to delete "{{ propertyToDelete?.name }}"? This action cannot be undone.
             </p>
           </div>

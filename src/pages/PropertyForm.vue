@@ -1,10 +1,10 @@
 <template>
   <div class="space-y-6">
     <div>
-      <h1 class="text-2xl font-bold text-gray-900">
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">
         {{ isEditing ? 'Edit Property' : 'Create Property' }}
       </h1>
-      <p class="text-gray-600">
+      <p class="text-gray-600 dark:text-gray-300">
         {{ isEditing ? 'Update property information' : 'Add a new rental property' }}
       </p>
     </div>
@@ -14,7 +14,7 @@
       <div class="flex items-center justify-center py-12">
         <div class="text-center">
           <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
-          <p class="text-gray-600">Loading property data...</p>
+          <p class="text-gray-600 dark:text-gray-400">Loading property data...</p>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
     <!-- Form (hidden while loading in edit mode) -->
     <div v-else class="card max-w-2xl">
       <form @submit.prevent="handleSubmit" class="space-y-6">
-        <div v-if="error" class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+        <div v-if="error" class="bg-red-50 dark:bg-red-900/50 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-4 py-3 rounded">
           {{ error }}
         </div>
 
@@ -81,9 +81,9 @@
             id="is_active"
             v-model="form.is_active"
             type="checkbox"
-            class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+            class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 rounded"
           />
-          <label for="is_active" class="ml-2 block text-sm text-gray-900">
+          <label for="is_active" class="ml-2 block text-sm text-gray-900 dark:text-gray-100">
             Property is active and available for booking
           </label>
         </div>

@@ -1,5 +1,5 @@
 <template>
-  <aside class="w-64 bg-white shadow-sm border-r border-gray-200 min-h-screen">
+  <aside class="w-64 bg-white dark:bg-gray-800 shadow-sm border-r border-gray-200 dark:border-gray-700 min-h-screen">
     <nav class="p-4">
       <ul class="space-y-2">
         <li>
@@ -73,10 +73,10 @@ import {
 
 <style scoped>
 .nav-link {
-  @apply flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors;
+  @apply flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors;
 }
 
 .nav-link-active {
-  @apply bg-primary-50 text-primary-700 border-r-2 border-primary-600;
+  @apply bg-primary-50 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 border-r-2 border-primary-600 dark:border-primary-400;
 }
 </style>
