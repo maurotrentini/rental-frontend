@@ -323,7 +323,7 @@ onMounted(async () => {
   try {
     // Load dropdown data and booking data in parallel
     const promises = [
-      propertyStore.fetchProperties({ per_page: 100 }),
+      propertyStore.fetchProperties({ per_page: 100, is_active: 1 }),
       guestStore.fetchGuests({ per_page: 100 }),
       extraStore.fetchExtras({ is_active: 1, per_page: 100 })
     ]
