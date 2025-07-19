@@ -14,7 +14,9 @@
       <div class="flex items-center justify-center py-12">
         <div class="text-center">
           <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
-          <p class="text-gray-600 dark:text-gray-400">Loading booking data...</p>
+          <p class="text-gray-600 dark:text-gray-400">
+            {{ isEditing ? 'Loading booking data...' : 'Loading form data...' }}
+          </p>
         </div>
       </div>
     </div>
@@ -209,7 +211,7 @@ const guestStore = useGuestStore()
 const extraStore = useExtraStore()
 
 const isEditing = computed(() => !!route.params.id)
-const isLoadingData = ref(false)
+const isLoadingData = ref(true)
 const error = ref('')
 
 const form = ref({
@@ -285,14 +287,25 @@ const handleSubmit = async () => {
   error.value = ''
   
   try {
-    const bookingData = { ...form.value }
+    const bookingData = {
+      property_id: parseInt(form.value.property_id),
+      guest_id: parseInt(form.value.guest_id),
+      check_in_date: form.value.check_in_date,
+      check_out_date: form.value.check_out_date,
+      notes: form.value.notes || null
+    }
+    
+    // Only add status for editing
+    if (isEditing.value) {
+      bookingData.status = form.value.status
+    }
     
     // Add extras
     const extrasData = []
     Object.keys(selectedExtras.value).forEach(extraId => {
       if (selectedExtras.value[extraId]) {
         extrasData.push({
-          extra_id: parseInt(extraId),
+          id: parseInt(extraId),
           quantity: extraQuantities.value[extraId] || 1
         })
       }
@@ -310,16 +323,12 @@ const handleSubmit = async () => {
     
     router.push('/bookings')
   } catch (err) {
+    console.error('Booking error details:', err.response?.data)
     error.value = err.response?.data?.message || 'An error occurred'
   }
 }
 
 onMounted(async () => {
-  // Start loading immediately if editing
-  if (isEditing.value) {
-    isLoadingData.value = true
-  }
-  
   try {
     // Load dropdown data and booking data in parallel
     const promises = [
@@ -375,9 +384,7 @@ onMounted(async () => {
     }
   } finally {
     // Always stop loading spinner
-    if (isEditing.value) {
-      isLoadingData.value = false
-    }
+    isLoadingData.value = false
   }
 })
 
