@@ -10,7 +10,7 @@
     </div>
 
     <!-- Loading State for Edit Mode -->
-    <div v-if="isEditing && isLoadingData" class="card max-w-2xl">
+    <div v-if="(isEditing && isLoadingData) || (!isEditing && isLoadingDropdowns)" class="card max-w-2xl">
       <div class="flex items-center justify-center py-12">
         <div class="text-center">
           <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
@@ -20,7 +20,7 @@
     </div>
 
     <!-- Form (hidden while loading in edit mode) -->
-    <div v-else class="card max-w-2xl">
+    <div v-else-if="!isLoadingDropdowns || (isEditing && !isLoadingData)" class="card max-w-2xl">
       <form @submit.prevent="handleSubmit" class="space-y-6">
         <div v-if="error" class="bg-red-50 dark:bg-red-900/50 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-4 py-3 rounded">
           {{ error }}
@@ -228,6 +228,10 @@ const selectedExtras = ref({})
 const extraQuantities = ref({})
 
 const today = new Date().toISOString().split('T')[0]
+
+const isLoadingDropdowns = computed(() => {
+  return properties.value.length === 0 || guests.value.length === 0 || extras.value.length === 0
+})
 
 const priceBreakdown = ref({
   nights: 0,
